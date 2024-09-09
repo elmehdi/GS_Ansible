@@ -1,0 +1,10 @@
+# As I'm using cloud servers provided by the a cloud guru labs, the IP addresses change every 4 hours, but the content on the servers stays intact. => I NEED TO UPDATE THIS FILE EACH TIME WITH THE NEW IP @s
+
+#I need to check if the hostnames change, if not use them instead
+
+# ee7c4e98bd2c.mylabserver.com
+18.133.155.116
+# ee7c4e98bd3c.mylabserver.com
+3.10.118.124
+# ee7c4e98bd1c.mylabserver.com
+13.40.133.55
