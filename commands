@@ -1,0 +1,14 @@
+ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+# the -m is for module, there is types of modules
+# allo us to make sure that every thing is working : ansible was able to connect to each server and establish connection
+# -i : inventory file 
+# PFF : I have now git ssh problems, WHY !? : because of the session, different ssh agents
+#  
+# we want to actually automate everything : 500 servers ! :
+# shorten that command and create an ansible config file
+
+ansible all -m ping >> because I put the key and inventory file in the cfg file
+ansible all --list-hosts 
+ansible all -m gather_facts : for plenty of information
+ansible all -m gather_facts --limit host IP@
+^ can be used for trubleshooting as well
