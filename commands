@@ -12,3 +12,15 @@ ansible all --list-hosts
 ansible all -m gather_facts : for plenty of information
 ansible all -m gather_facts --limit host IP@
 ^ can be used for trubleshooting as well
+
+# for redhat servers - valid for centOS
+ansible RedHat_servers -m yum -a "name='*' state=latest" --become --ask-become-pass 
+# for ubuntu - change all with the ubunto category
+ansible all -m apt -a update_cache=true --become --ask-become-pass
+
+--become : allows me to elevate the previleges - by default it is going to use sudo
+
+#other commands :
+ansible redhat_servers -m yum -a name=snapd --become --ask-become-pass
+ansible ubuntu_servers -m apt -a name=snapd --become --ask-become-pass
+
