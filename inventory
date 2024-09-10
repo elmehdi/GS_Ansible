@@ -1,11 +1,20 @@
 # As I'm using cloud servers provided by the a cloud guru labs, the IP addresses change every 4 hours, but the content on the servers stays intact. => I NEED TO UPDATE THIS FILE EACH TIME WITH THE NEW IP @s
 
 #I need to check if the hostnames change, if not use them instead
+# I put them in categories, because I discovered that tha ansible ad-hoc commands are not the same for the same repostories, there will different commands, and also because they have different passwords and the command only asks for 1 password so if I type the password of one of them, one will succeed and the others fail
 
+[RedHat_servers]
 # ee7c4e98bd2c.mylabserver.com
+# RedHat Enterprise Linux Server
 cloud_user@18.133.155.116
-# ee7c4e98bd3c.mylabserver.com
-cloud_user@3.10.118.124
+
+[CentOs_servers]
 # ee7c4e98bd1c.mylabserver.com
+#Cent OS Linux 7
 cloud_user@13.40.133.55
+
+[Ubuntu_servers]
+# ee7c4e98bd3c.mylabserver.com
+#Ubuntu 22.04.4 LTS
+cloud_user@3.10.118.124
 
