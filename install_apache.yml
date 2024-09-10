@@ -1,0 +1,20 @@
+# PLAYBOOK 
+---
+- hosts: all
+  become: true
+  vars_files:
+    - passwords.yml
+  vars:
+    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+  tasks:
+
+  - name: install apache2 package
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_os_family == "Debian"
+
+  - name: install httpd pkg
+    yum:
+      name: httpd
+    when: ansible_os_family == "RedHat"
