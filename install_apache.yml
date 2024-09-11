@@ -5,16 +5,45 @@
   vars_files:
     - passwords.yml
   vars:
+    debian: "{{ ansible_os_family == 'Debian' }}"
+    redhat: "{{ ansible_os_family == 'RedHat' }}"
     ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
   tasks:
 
-  - name: install apache2 package
-    apt:
-      name: apache2
-      state: latest
-    when: ansible_os_family == "Debian"
+    - name: update repository index
+      apt:
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
 
-  - name: install httpd pkg
-    yum:
-      name: httpd
-    when: ansible_os_family == "RedHat"
+    - name: install apache2 package
+      apt:
+        name: apache2
+        state: latest
+      when:  debian
+          #      when: ansible_os_family == "Debian"
+          #      when: ansible_distribution in ["Debian", "Ubuntu"]
+   
+    - name: add php support for apache2
+      apt:
+        name: libapache2-mod-php
+        state: latest
+      when: debian
+  
+    - name: update repository index
+      yum:
+        update_cache: yes
+      when: redhat
+   
+    - name: install httpd pkg
+      yum:
+        name: httpd
+          #      when: ansible_os_family == "RedHat"
+      when: redhat
+
+    - name: add php support for httpd
+      yum:
+        name: php
+        state: latest
+      when: redhat
+
+
