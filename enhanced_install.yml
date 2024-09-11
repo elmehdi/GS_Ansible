@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - passwords.yml
+  vars:
+    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+  tasks:
+
+    - name: install apache and php package
+      package: #a module in ansible that is a generic package manager, it'll use whatever pakage manager the underlying host or server actually uses
+        name: 
+          - "{{ apache_pkg }}"
+          - "{{ php_pkg }}"
+        update_cache: yes #because it is an option for the apt/yum module
+        state: latest
+          #      when: ansible_os_family == "Debian"
+          #      when: ansible_distribution in ["Debian", "Ubuntu"]
