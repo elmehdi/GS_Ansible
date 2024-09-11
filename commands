@@ -27,4 +27,10 @@ ansible ubuntu_servers -m apt -a name=snapd --become --ask-become-pass
 -- HTTP wasn't allowed o ana kent an7ma9. >> ufw allow 80/tcp and 443/tcp > restart apache
 
 >> ansible-playbook --ask-vault-pass install_apache.yml
+## I can also use tags and pre_tasks,
+# plays with tags:always will always execute.
+# the command to list different tags in the yaml :
+ansible-playbook --list-tags file.yml
+# to target multiple tags :
+ansible-playbook --tags [apache, db] --ask-become-pass file.yml | in my case --ask-vault-pass.
 
