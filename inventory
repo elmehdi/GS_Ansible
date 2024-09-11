@@ -4,17 +4,19 @@
 # I put them in categories, because I discovered that tha ansible ad-hoc commands are not the same for the same repostories, there will different commands, and also because they have different passwords and the command only asks for 1 password so if I type the password of one of them, one will succeed and the others fail
 
 #UPDATE : the hostnames don't change >> using them instead
-[redhat_servers]
+[web_servers]
 cloud_user@ee7c4e98bd2c.mylabserver.com apache_pkg=httpd php_pkg=php 
 # RedHat Enterprise Linux Server
 # cloud_user@18.133.155.116
 
-[centos_servers]
+
 cloud_user@ee7c4e98bd1c.mylabserver.com apache_pkg=httpd php_pkg=php
 #Cent OS Linux 7
 # cloud_user@13.40.133.55
 
-[ubuntu_servers]
+cloud_user@ee7c4e98bd3c.mylabserver.com apache_pkg=apache2 php_pkg=libapache2-mod-php ansible_python_interpreter=/usr/bin/python3
+
+[db_servers]
 cloud_user@ee7c4e98bd3c.mylabserver.com apache_pkg=apache2 php_pkg=libapache2-mod-php ansible_python_interpreter=/usr/bin/python3
 #Ubuntu 22.04.4 LTS
 # cloud_user@3.10.118.124 ansible_python_interpreter=/usr/bin/python3

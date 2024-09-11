@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | El Mehdi Fetouaki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(to right, #4a90e2, #50c878);
+            color: #fff;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 20px;
+        }
+
+        .navbar .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links li a:hover {
+            color: #ddd;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero .cta-button {
+            padding: 10px 30px;
+            background-color: #fff;
+            color: #4a90e2;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .hero .cta-button:hover {
+            background-color: #50c878;
+            transform: scale(1.1);
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .about, .skills, .projects, .contact {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill, .project {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill:hover, .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact form input, .contact form textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact form button {
+            padding: 10px 30px;
+            border: none;
+            background-color: #4a90e2;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact form button:hover {
+            background-color: #50c878;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo"><a href="#">El Mehdi Fetouaki</a></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Hi, I'm El Mehdi</h1>
+            <p>A Software Engineer & DevOps Enthusiast</p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I'm a Software Engineer specializing in full-stack development and DevOps practices.</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill">
+                <h3>Languages</h3>
+                <p>Java, Python, JavaScript</p>
+            </div>
+            <div class="skill">
+                <h3>Frameworks</h3>
+                <p>Spring Boot, React.js, Node.js</p>
+            </div>
+            <div class="skill">
+                <h3>DevOps Tools</h3>
+                <p>Docker, Jenkins, Git</p>
+            </div>
+            <div class="skill">
+                <h3>Databases</h3>
+                <p>MySQL, MongoDB, PostgreSQL</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project">
+                <h3>Project One</h3>
+                <p>Description of Project One.</p>
+            </div>
+            <div class="project">
+                <h3>Project Two</h3>
+                <p>Description of Project Two.</p>
+            </div>
+            <div class="project">
+                <h3>Project Three</h3>
+                <p>Description of Project Three.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 El Mehdi Fetouaki</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - passwords.yml
+  vars:
+    debian: "{{ ansible_os_family == 'Debian' }}"
+    redhat: "{{ ansible_os_family == 'RedHat' }}"
+    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+  pre_tasks:
+
+    - name: install updates (CentOS - RHEL)
+      tags: always
+      package:
+        update_only: yes
+        update_cache: yes # because it is an option for the apt module
+      when: redhat
+
+    - name: install updates (Ubuntu)
+      tags: always
+      apt:
+        # upgrade: dist
+        update_cache: yes
+      when: debian
+
+- hosts: web_servers
+  become: true
+  vars_files:
+    - passwords.yml
+  vars:
+    debian: "{{ ansible_os_family == 'Debian' }}"
+    redhat: "{{ ansible_os_family == 'RedHat' }}"
+    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+  tasks:
+
+    - name: install apache and php for ubuntu servers
+      tags: apache, apache2, ubuntu
+      apt:
+        name:
+          - apache2
+          - libapache2-mod-php
+        state: latest
+      when: debian
+
+    - name: install apache and php for redhat servers
+      tags: apache, centos, redhat, rhel, httpd
+      package:
+        name:
+          - httpd
+          - php
+        state: latest
+      when: redhat
+
+    - name: copy default html file for site
+      tags: apache2, apache, httpd
+      copy:
+        src: default.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+
+- hosts: db_servers
+  become: true
+  vars_files:
+    - passwords.yml
+  vars:
+    debian: "{{ ansible_os_family == 'Debian' }}"
+    redhat: "{{ ansible_os_family == 'RedHat' }}"
+    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+  tasks:
+
+    - name: install mariadb pkg (CentOS - RHEL)
+      tags: centos, db, mariadb
+        # will never be installed 7int not part of db_servers
+      package:
+        name: mariadb
+        state: latest
+      when: redhat
+
+    - name: install mariadb pkg (Ubuntu)
+      tags: debian, ubuntu, db, mariadb
+      apt:
+        name: mariadb
+        state: latest
+      when: debian
