@@ -10,6 +10,7 @@
   tasks:
 
     - name: install apache2 and php package
+      tags: apache2, php, ubuntu
       apt:
         name: 
           - apache2
@@ -21,6 +22,7 @@
           #      when: ansible_distribution in ["Debian", "Ubuntu"]
    
     - name: install httpd pkg
+      tags: apache, php, centos, rhel
       yum:
         name:
           - httpd
