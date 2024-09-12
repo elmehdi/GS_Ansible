@@ -1,12 +1,9 @@
 ---
-- hosts: all
+- hosts: all:!workstations
   become: true
   vars_files:
     - passwords.yml
-  vars:
-    debian: "{{ ansible_os_family == 'Debian' }}"
-    redhat: "{{ ansible_os_family == 'RedHat' }}"
-    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+    - common_vars.yml
   pre_tasks:
 
     - name: install updates (CentOS - RHEL)
@@ -19,7 +16,7 @@
     - name: install updates (Ubuntu)
       tags: always
       apt:
-        # upgrade: dist
+        upgrade: dist
         update_cache: yes
       when: debian
 
@@ -27,10 +24,7 @@
   become: true
   vars_files:
     - passwords.yml
-  vars:
-    debian: "{{ ansible_os_family == 'Debian' }}"
-    redhat: "{{ ansible_os_family == 'RedHat' }}"
-    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+    - common_vars.yml
   tasks:
 
     - name: install apache and php for ubuntu servers
@@ -64,10 +58,7 @@
   become: true
   vars_files:
     - passwords.yml
-  vars:
-    debian: "{{ ansible_os_family == 'Debian' }}"
-    redhat: "{{ ansible_os_family == 'RedHat' }}"
-    ansible_become_pass: "{{ become_pass[inventory_hostname] }}"
+    - common_vars.yml  
   tasks:
 
     - name: install mariadb pkg (CentOS - RHEL)
@@ -81,6 +72,34 @@
     - name: install mariadb pkg (Ubuntu)
       tags: debian, ubuntu, db, mariadb
       apt:
-        name: mariadb
+        name: mariadb-server
         state: latest
       when: debian
+
+- hosts: workstations
+  become: true
+  vars_files:
+    - passwords.yml
+    - common_vars.yml
+  tasks:
+
+
+    - name: Debug task
+      debug:
+        msg: "This task is running on {{ inventory_hostname }}"
+
+    - name: install unzip
+      tags: terraform
+      package:
+        name: unzip
+
+    - name: install Terraform
+      tags: terraform
+      unarchive: #unzip a zip file
+        src: https://releases.hashicorp.com/terraform/1.9.5/terraform_1.9.5_linux_amd64.zip 
+        dest: /usr/local/bin
+        remote_src: yes
+        mode: 0755
+        owner: root
+        group: root 
+
