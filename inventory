@@ -21,3 +21,7 @@ cloud_user@ee7c4e98bd3c.mylabserver.com apache_pkg=apache2 php_pkg=libapache2-mo
 #Ubuntu 22.04.4 LTS
 # cloud_user@3.10.118.124 ansible_python_interpreter=/usr/bin/python3
 
+[workstations]
+#192.168.11.116
+localhost
+
