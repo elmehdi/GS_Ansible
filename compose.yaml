@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  ubuntu-ssh:
+    build: .
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    container_name: docker-node  # This will set the container's name explicitly
+
