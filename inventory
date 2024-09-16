@@ -23,8 +23,7 @@ cloud_user@ee7c4e98bd3c.mylabserver.com apache_pkg=apache2 php_pkg=libapache2-mo
 
 [workstations]
 #192.168.11.116
-my_workstation localhost
+localhost ansible_connection=local
 # Docker node
-#172.18.0.2
-docker_container ansible_host=localhost ansible_port=2222 ansible_user=ansible_user
+ubuntu-container ansible_host=localhost ansible_port=2222 ansible_user=ansible_user
 
