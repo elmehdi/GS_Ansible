@@ -6,5 +6,5 @@ services:
     ports:
       - "2222:22"
     restart: unless-stopped
-    container_name: docker-node  # This will set the container's name explicitly
+    container_name: docker-node
 
