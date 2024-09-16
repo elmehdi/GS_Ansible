@@ -45,6 +45,36 @@
         state: latest
       when: redhat
 
+    - name: start httpd service (CentOS/RedHat)
+      tags: apache, service, centos, httpd, redhat
+        # this will start the service but won't enable it, so it needs to be started each time it reboots.
+      service:
+        name: httpd
+        state: started
+          # this will enable it
+        enabled: yes
+      when: redhat
+
+    - name: change e-mail address for admin
+      tags: apache, httpd, service, redhat, centos
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^ServerAdmin'
+        line: ServerAdmin efetouaki@gmail.com
+      when: redhat
+      register: httpd
+        # register allows ansible to capture the state in a variable
+        # when this play runs, that line will be changed and register the state in a variable name (httpd/ pizza : can be named anything) so we can refer to it later.
+        # when I service configuration is changed >> service must restart
+
+    - name: retstart httpd
+      tags: service, httpd, apache, redhat, centos
+      service:
+        name: httpd
+        state: restarted
+      when: httpd.changed
+        # no need tp specify the OS, because the registry httpd was played earlier
+
     - name: copy default html file for site
       tags: apache2, apache, httpd
       copy:
