@@ -34,3 +34,4 @@ ansible-playbook --list-tags file.yml
 # to target multiple tags :
 ansible-playbook --tags [apache, db] --ask-become-pass file.yml | in my case --ask-vault-pass.
 
+
